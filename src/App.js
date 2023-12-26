@@ -29,28 +29,28 @@ const App = () => {
         text,
         checked: false,
       };
-      setTodos(todos.concat(todo));
-      nextId.current += 1; //nextId 1씩 더하기
+      setTodos((todos) => todos.concat(todo));
+      nextId.current += 1; // nextId 1씩 더하기
     },
-    [todos],
+    [], // 의존성 배열 비움
   );
 
   const onRemove = useCallback(
     (id) => {
-      setTodos(todos.filter((todo) => todo.id !== id));
+      setTodos((todos) => todos.filter((todo) => todo.id !== id));
     },
-    [todos],
+    [], // 의존성 배열 비움
   );
 
   const onToggle = useCallback(
     (id) => {
-      setTodos(
+      setTodos((todos) =>
         todos.map((todo) =>
           todo.id === id ? { ...todo, checked: !todo.checked } : todo,
         ),
       );
     },
-    [todos],
+    [], // 의존성 배열 비움
   );
 
   return (
